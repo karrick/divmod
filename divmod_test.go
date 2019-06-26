@@ -16,3 +16,18 @@ func TestDivmod(t *testing.T) {
 		t.Errorf("GOT: %#v; WANT: %#v", got, want)
 	}
 }
+
+func BenchmarkOperators(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		q := 10 / 3
+		r := 10 % 3
+		_, _ = q, r
+	}
+}
+
+func BenchmarkDivmod(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		q, r := divmod.Divmod(0, 10, 3)
+		_, _ = q, r
+	}
+}
